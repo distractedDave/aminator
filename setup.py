@@ -1,24 +1,24 @@
 from setuptools import setup, find_packages
 setup(
-    name = "aminatorplugins_chef",
+    name = "aminatorplugins_chef_zero",
     version = "0.1",
     packages = find_packages(),
     namespace_packages = ( 'aminatorplugins', 'aminatorplugins.provisioner'),
 
     data_files = [
-        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.chef.yml']),
+        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.chef_zero.yml']),
     ],
 
     entry_points = {
        'aminator.plugins.provisioner': [
-           'chef = aminatorplugins.provisioner.chef:ChefProvisionerPlugin',
+           'chef_zero = aminatorplugins.provisioner.chef_zero:ChefProvisionerPlugin',
        ],
     },
 
     # metadata for upload to PyPI
-    author = "Asbjorn Kjaer",
-    author_email = "bunjiboys@bunjiboys.dk",
-    description = "Chef Solo provisioner for Netflix's aminator",
+    author = "Dave Owens",
+    author_email = "dave+git@waterford.org",
+    description = "Chef Zero provisioner for Netflix's aminator",
     license = "Apache 2.0",
-    keywords = "aminator plugin chef-solo chef solo",
+    keywords = "aminator plugin chef-zero chef zero",
 )
