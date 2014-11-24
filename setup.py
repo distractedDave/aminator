@@ -6,12 +6,12 @@ setup(
     namespace_packages = ( 'aminatorplugins', 'aminatorplugins.provisioner'),
 
     data_files = [
-        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.chef_zero.yml']),
+        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.chef.yml']),
     ],
 
     entry_points = {
        'aminator.plugins.provisioner': [
-           'chef_zero = aminatorplugins.provisioner.chef_zero:ChefProvisionerPlugin',
+           'chef = aminatorplugins.provisioner.chef:ChefProvisionerPlugin',
        ],
     },
 
