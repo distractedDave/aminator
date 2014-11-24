@@ -118,7 +118,7 @@ class ChefProvisionerPlugin(BaseProvisionerPlugin):
         context = self._config.context
         config = self._config.plugins[self.full_name]
 
-        log.debug('Running chef-solo for run list items: %s' % config.get('runlist'))
+        log.debug('Running chef-zero for run list items: %s' % config.get('runlist'))
         return chef_solo(config.get('runlist'))
 
 
@@ -133,6 +133,9 @@ class ChefProvisionerPlugin(BaseProvisionerPlugin):
 def curl_download(src, dst):
     return 'curl {0} -o {1}'.format(src, dst)
 
+@command()
+def svn_download(src, dst);
+    return 'svn co {0} {1}'.format(src, dst)
 
 @command()
 def install_omnibus_chef(chef_version, omnibus_url):
@@ -144,13 +147,13 @@ def install_omnibus_chef(chef_version, omnibus_url):
 def chef_solo(runlist):
     # If run list is not specific, dont override it on the command line
     if runlist:
-        return 'chef-solo -j /tmp/node.json -c /tmp/solo.rb -o {0}'.format(runlist)
+        return 'chef-client -z -o {0}'.format(runlist)
     else:
         return 'chef-solo -j /tmp/node.json -c /tmp/solo.rb'
 
 
 @command()
 def fetch_chef_payload(payload_url):
-    curl_download(payload_url, '/tmp/chef_payload.tar.gz')
+    svn_download(payload_url, '/tmp/chef-repo')
 
-    return 'tar -C /tmp -xf /tmp/chef_payload.tar.gz'.format(payload_url)
+    return ' I have done it '.format(payload_url)
